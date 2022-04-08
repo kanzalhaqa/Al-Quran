@@ -5,13 +5,16 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private ArrayList<main_item_solo> arrayList;
-    RecyclerView recyclerView;
+    private  RecyclerView recyclerView;
+    private main_item_solo_adaptor.RecyclerViewClickListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +31,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setItemAdaptor() {
-        main_item_solo_adaptor adaptor = new main_item_solo_adaptor(arrayList);
+        setOnClickListener();
+        main_item_solo_adaptor adaptor = new main_item_solo_adaptor(arrayList,listener);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adaptor);
+    }
+
+    private void setOnClickListener() {
+        listener= new main_item_solo_adaptor.RecyclerViewClickListener() {
+            @Override
+            public void onClick(View v, int position) {
+                Intent intent=new Intent(getApplicationContext(),all_in_one_surrah.class);
+                intent.putExtra("suraNameOnnewAct",arrayList.get(position).getSurahNameArab());
+                startActivity(intent);
+            }
+        };
     }
 
     private void setItemInfo() {
@@ -108,5 +123,83 @@ main_item_solo_adaptor adaptor = new main_item_solo_adaptor(arrayList);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adaptor);
+
+ */
+
+/*
+To add onclick to item in recyclerview
+Add
+In Adaptor class
+ @Override
+    public int getItemCount() {
+        return arrayList.size();
+    }
+    -------------,
+    public interface RecyclerViewClickListener{
+        void onClick(View v, int position);
+    }
+
+
+private ArrayList<main_item_solo>arrayList;
+----------------,
+    private RecyclerViewClickListener listener;
+
+    ------,
+     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+     and Implement Method
+
+-------------,inMyViewHolder
+ surahNameEnglish=view.findViewById(R.id.SurahNameEnglish);
+    view.setOnClickListener(this);
+
+
+--------------,on Above created Method
+ @Override
+        public void onClick(View view) {
+listener.onClick(view,getAdapterPosition());
+        }
+
+        --------,                                                               ,,,,,,,,,,,,,
+            public main_item_solo_adaptor(ArrayList<main_item_solo> arrayList,RecyclerViewClickListener listener) {
+        this.arrayList = arrayList;
+        this.listener=listener;
+
+------------------,
+    private main_item_solo_adaptor.RecyclerViewClickListener listener;
+
+
+-------------------,
+ private void setItemAdaptor() {
+        setOnClickListener();
+        main_item_solo_adaptor adaptor = new main_item_solo_adaptor(arrayList,listener);
+
+
+
+---------------------------,
+ private void setOnClickListener() {
+        listener= new main_item_solo_adaptor.RecyclerViewClickListener() {
+            @Override
+            public void onClick(View v, int position) {
+                Intent intent=new Intent(getApplicationContext(),all_in_one_surrah.class);
+                intent.putExtra("Surrahname",arrayList.get(position).getSurahNameArab());
+                startActivity(intent);
+            }
+        };
+    }
+
+--------------------------.In new Activity
+ String suraNameOnnewAct= "USerNAmrjfn";
+
+        Bundle extras = getIntent().getExtras();
+        if(extras!=null){
+            suraNameOnnewAct=extras.getString("suraNameOnnewAct");
+        }
+        TextView nametext= findViewById(R.id.textView);
+nametext.setText(suraNameOnnewAct);
+
+
+
+
+
 
  */
