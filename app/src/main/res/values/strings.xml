@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Al-Quran</string>
+    <string name="surahnamearab">surahNameArab</string>
+    <string name="surahnameenglish">surahNameEnglish</string>
+</resources>
