@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private ArrayList<main_item_solo> arrayList;
-    private  RecyclerView recyclerView;
+    private RecyclerView recyclerView;
     private main_item_solo_adaptor.RecyclerViewClickListener listener;
 
     @Override
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView= findViewById(R.id.recyclerViewMain);
+        recyclerView = findViewById(R.id.recyclerViewMain);
 
         arrayList = new ArrayList<>();
         setItemInfo();
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setItemAdaptor() {
         setOnClickListener();
-        main_item_solo_adaptor adaptor = new main_item_solo_adaptor(arrayList,listener);
+        main_item_solo_adaptor adaptor = new main_item_solo_adaptor(arrayList, listener);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -40,19 +40,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setOnClickListener() {
-        listener= (v, position) -> {
-            Intent intent=new Intent(getApplicationContext(),all_in_one_surrah.class);
-            intent.putExtra("suraNameOnnewAct",arrayList.get(position).getSurahNameArab());
+        listener = (v, position) -> {
+            Intent intent = new Intent(getApplicationContext(), all_in_one_surrah.class);
+            intent.putExtra("suraNameOnnewAct", arrayList.get(position).getSurahNameArab());
             startActivity(intent);
         };
     }
 
     private void setItemInfo() {
-        arrayList.add(new main_item_solo("hbvhv","dkjbdjbdj"));
-        arrayList.add(new main_item_solo("gfxgh","njjbjbdj"));
-        arrayList.add(new main_item_solo("jgggjjjj","hdbhvevw"));
-        arrayList.add(new main_item_solo("etfwuewev","vjfvhe"));
-        arrayList.add(new main_item_solo("hbvhv",",bej"));
+        arrayList.add(new main_item_solo("!", "Al-Fatihah","1"));
+        arrayList.add(new main_item_solo("gfxgh", "njjbjbdj","2"));
+        arrayList.add(new main_item_solo("jgggjjjj", "hdbhvevw","3"));
+        arrayList.add(new main_item_solo("etfwuewev", "vjfvhe","4"));
+        arrayList.add(new main_item_solo("hbvhv", ",bej","5"));
+        arrayList.add(new main_item_solo("dbw","dnw","6"));
 
     }
 }

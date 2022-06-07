@@ -27,11 +27,13 @@ public class main_item_solo_adaptor extends RecyclerView.Adapter<main_item_solo_
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView surahNameArab;
         private TextView surahNameEnglish;
+        private TextView surahNumber;
 
         public MyViewHolder(final View view) {
             super(view);
             surahNameArab = view.findViewById(R.id.SurahNameArab);
             surahNameEnglish = view.findViewById(R.id.SurahNameEnglish);
+            surahNumber = view.findViewById(R.id.surahNumber);
             view.setOnClickListener(this);
         }
 
@@ -52,8 +54,10 @@ public class main_item_solo_adaptor extends RecyclerView.Adapter<main_item_solo_
     public void onBindViewHolder(@NonNull main_item_solo_adaptor.MyViewHolder holder, int position) {
         String SurahNameArab = arrayList.get(position).getSurahNameArab();
         String SurahNameEnglish = arrayList.get(position).getSurahNameEnglish();
+        String SurahNumber=arrayList.get(position).getSurahNumber();
         holder.surahNameArab.setText(SurahNameArab);
         holder.surahNameEnglish.setText(SurahNameEnglish);
+        holder.surahNumber.setText(SurahNumber);
     }
 
     @Override
