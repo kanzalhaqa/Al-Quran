@@ -40,18 +40,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setOnClickListener() {
-        listener= new main_item_solo_adaptor.RecyclerViewClickListener() {
-            @Override
-            public void onClick(View v, int position) {
-                Intent intent=new Intent(getApplicationContext(),all_in_one_surrah.class);
-                intent.putExtra("suraNameOnnewAct",arrayList.get(position).getSurahNameArab());
-                startActivity(intent);
-            }
+        listener= (v, position) -> {
+            Intent intent=new Intent(getApplicationContext(),all_in_one_surrah.class);
+            intent.putExtra("suraNameOnnewAct",arrayList.get(position).getSurahNameArab());
+            startActivity(intent);
         };
     }
 
     private void setItemInfo() {
-        arrayList.add(new main_item_solo("hbvhv","njj"));
+        arrayList.add(new main_item_solo("hbvhv","dkjbdjbdj"));
+        arrayList.add(new main_item_solo("gfxgh","njjbjbdj"));
+        arrayList.add(new main_item_solo("jgggjjjj","hdbhvevw"));
+        arrayList.add(new main_item_solo("etfwuewev","vjfvhe"));
+        arrayList.add(new main_item_solo("hbvhv",",bej"));
+
     }
 }
 
